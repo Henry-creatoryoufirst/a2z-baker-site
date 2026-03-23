@@ -532,6 +532,44 @@
         /* ============ GALLERY ============ */
         .gallery-section {
             overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 40px;
+        }
+
+        /* ============ FLOATING CTA ============ */
+        .floating-cta {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 900;
+            background: var(--rose);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(196, 144, 124, 0.4), 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            text-decoration: none;
+        }
+
+        .floating-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .floating-cta:hover {
+            background: var(--brown);
+            box-shadow: 0 6px 28px rgba(61, 43, 31, 0.3), 0 2px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
         }
 
         .gallery-rows {
@@ -875,9 +913,31 @@
 
             .menu-category { padding: 28px; }
 
+            .gallery-section { padding-bottom: 20px; }
+
+            .gallery-rows { gap: 10px; }
+
             .gallery-item {
-                flex: 0 0 220px;
-                height: 160px;
+                flex: 0 0 180px;
+                height: 130px;
+            }
+
+            .gallery-row-desktop { display: none; }
+
+            .floating-cta {
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%) translateY(20px);
+                font-size: 0.85rem;
+                padding: 12px 24px;
+            }
+
+            .floating-cta.visible {
+                transform: translateX(50%) translateY(0);
+            }
+
+            .floating-cta:hover {
+                transform: translateX(50%) translateY(-2px);
             }
 
             .order-form-wrap { padding: 28px 20px; }
@@ -925,6 +985,53 @@
             <p class="hero-tagline">Chemist in the Kitchen</p>
             <p class="hero-subtitle">Handcrafted baked goods made with love in Cincinnati</p>
             <a href="#order" class="btn-primary">Place an Order</a>
+        </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <div class="gallery-rows">
+                <!-- Row 1: scrolls left -->
+                <div class="gallery-row">
+                    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-01.jpg" alt="Red velvet cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-02.jpg" alt="Cinnamon rolls" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-03.jpg" alt="Everything bagel" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-04.jpg" alt="Mini cheesecakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-05.jpg" alt="Pumpkin bars" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-01.jpg" alt="Red velvet cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-02.jpg" alt="Cinnamon rolls" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-03.jpg" alt="Everything bagel" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-04.jpg" alt="Mini cheesecakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-05.jpg" alt="Pumpkin bars" loading="lazy"></div>
+                </div>
+                <!-- Row 2: scrolls right -->
+                <div class="gallery-row">
+                    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-06.jpg" alt="Cookie sandwiches" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Peanut butter pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-08.jpg" alt="Chocolate pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-09.jpg" alt="Swirl cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Coffee cake" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-06.jpg" alt="Cookie sandwiches" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Peanut butter pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-08.jpg" alt="Chocolate pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-09.jpg" alt="Swirl cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Coffee cake" loading="lazy"></div>
+                </div>
+                <!-- Row 3: scrolls left (hidden on mobile) -->
+                <div class="gallery-row gallery-row-desktop">
+                    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Mini cheesecake box" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-13.jpg" alt="Chocolate cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-14.jpg" alt="Sourdough bread" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-15.jpg" alt="Blueberry bagels" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Mini cheesecake box" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-13.jpg" alt="Chocolate cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-14.jpg" alt="Sourdough bread" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-15.jpg" alt="Blueberry bagels" loading="lazy"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1052,61 +1159,6 @@
         </div>
     </section>
 
-    <!-- ============ GALLERY ============ -->
-    <section class="section gallery-section" id="gallery">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">From Our Kitchen</span>
-                <h2 class="section-title">The Gallery</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="gallery-rows reveal">
-                <!-- Row 1: scrolls left -->
-                <div class="gallery-row">
-                    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-01.jpg" alt="Red velvet cupcakes" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-02.jpg" alt="Cinnamon rolls" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-03.jpg" alt="Everything bagel" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-04.jpg" alt="Mini cheesecakes" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-05.jpg" alt="Pumpkin bars" loading="lazy"></div>
-                    <!-- duplicate for seamless loop -->
-                    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-01.jpg" alt="Red velvet cupcakes" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-02.jpg" alt="Cinnamon rolls" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-03.jpg" alt="Everything bagel" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-04.jpg" alt="Mini cheesecakes" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-05.jpg" alt="Pumpkin bars" loading="lazy"></div>
-                </div>
-                <!-- Row 2: scrolls right -->
-                <div class="gallery-row">
-                    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-06.jpg" alt="Cookie sandwiches" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Peanut butter pie" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-08.jpg" alt="Chocolate pie" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-09.jpg" alt="Swirl cupcakes" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Coffee cake" loading="lazy"></div>
-                    <!-- duplicate for seamless loop -->
-                    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-06.jpg" alt="Cookie sandwiches" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Peanut butter pie" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-08.jpg" alt="Chocolate pie" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-09.jpg" alt="Swirl cupcakes" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Coffee cake" loading="lazy"></div>
-                </div>
-                <!-- Row 3: scrolls left -->
-                <div class="gallery-row">
-                    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Mini cheesecake box" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Cake pops" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-13.jpg" alt="Chocolate cake pops" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-14.jpg" alt="Sourdough bread" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-15.jpg" alt="Blueberry bagels" loading="lazy"></div>
-                    <!-- duplicate for seamless loop -->
-                    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Mini cheesecake box" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Cake pops" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-13.jpg" alt="Chocolate cake pops" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-14.jpg" alt="Sourdough bread" loading="lazy"></div>
-                    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-15.jpg" alt="Blueberry bagels" loading="lazy"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
@@ -1163,6 +1215,9 @@
         </div>
     </section>
 
+    <!-- ============ FLOATING CTA ============ -->
+    <a href="#order" class="floating-cta" id="floatingCta">Make an Order</a>
+
     <!-- ============ FOOTER ============ -->
     <footer class="footer">
         <div class="container">
@@ -1183,10 +1238,17 @@
 
     <!-- ============ JAVASCRIPT ============ -->
     <script>
-        // === Nav scroll effect ===
+        // === Nav scroll effect + floating CTA ===
         const nav = document.getElementById('nav');
+        const floatingCta = document.getElementById('floatingCta');
+        const heroEl = document.getElementById('hero');
+        const orderEl = document.getElementById('order');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 50);
+            // Show floating CTA after scrolling past hero, hide near order section
+            const pastHero = window.scrollY > heroEl.offsetHeight;
+            const nearOrder = orderEl.getBoundingClientRect().top < window.innerHeight * 1.2;
+            floatingCta.classList.toggle('visible', pastHero && !nearOrder);
         });
 
         // === Mobile menu ===
