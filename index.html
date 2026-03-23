@@ -531,22 +531,41 @@
 
         /* ============ GALLERY ============ */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
             gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 16px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--rose) transparent;
+        }
+
+        .gallery-grid::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .gallery-grid::-webkit-scrollbar-thumb {
+            background: var(--rose-light);
+            border-radius: 3px;
         }
 
         .gallery-item {
+            flex: 0 0 320px;
+            height: 360px;
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            aspect-ratio: 1;
+            scroll-snap-align: start;
         }
 
         .gallery-item.featured {
-            grid-column: span 2;
-            grid-row: span 2;
+            flex: 0 0 540px;
         }
 
         .gallery-item img {
@@ -801,15 +820,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+            .gallery-item {
+                flex: 0 0 280px;
+                height: 320px;
             }
 
             .gallery-item.featured {
-                grid-column: span 2;
-                grid-row: span 1;
-                aspect-ratio: 16/9;
+                flex: 0 0 460px;
             }
         }
 
@@ -823,17 +840,14 @@
 
             .menu-category { padding: 28px; }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
+            .gallery-item {
+                flex: 0 0 260px;
+                height: 280px;
             }
 
             .gallery-item.featured {
-                grid-column: span 1;
-                aspect-ratio: 4/3;
+                flex: 0 0 360px;
             }
-
-            .gallery-item { aspect-ratio: 4/3; }
 
             .order-form-wrap { padding: 28px 20px; }
 
