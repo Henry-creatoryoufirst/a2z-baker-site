@@ -534,50 +534,57 @@
             overflow: hidden;
         }
 
-        .gallery-grid {
+        .gallery-rows {
             display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding: 0 0 20px;
-            margin: 0 -24px;
-            padding-left: 24px;
-            padding-right: 24px;
-            /* Full bleed: break out of container */
+            flex-direction: column;
+            gap: 16px;
             width: 100vw;
             margin-left: calc(-50vw + 50%);
-            padding-left: max(24px, calc((100vw - 1200px) / 2));
-            padding-right: 40px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--rose-light) transparent;
         }
 
-        .gallery-grid::-webkit-scrollbar {
-            height: 6px;
+        .gallery-row {
+            display: flex;
+            gap: 16px;
+            animation: scrollRow 30s linear infinite;
         }
 
-        .gallery-grid::-webkit-scrollbar-track {
-            background: transparent;
+        .gallery-row:nth-child(2) {
+            animation: scrollRowReverse 35s linear infinite;
         }
 
-        .gallery-grid::-webkit-scrollbar-thumb {
-            background: var(--rose-light);
-            border-radius: 3px;
+        .gallery-row:nth-child(3) {
+            animation: scrollRow 32s linear infinite;
+        }
+
+        @keyframes scrollRow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollRowReverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
 
         .gallery-item {
-            flex: 0 0 380px;
-            height: 400px;
-            border-radius: 14px;
+            flex: 0 0 300px;
+            height: 220px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            scroll-snap-align: start;
+            box-shadow: 0 4px 20px rgba(196, 144, 124, 0.3);
+            transition: box-shadow 0.3s ease, transform 0.6s ease;
         }
 
-        .gallery-item.featured {
-            flex: 0 0 580px;
+        .gallery-item:nth-child(5n+1) { box-shadow: 0 4px 24px rgba(196, 144, 124, 0.35); }
+        .gallery-item:nth-child(5n+2) { box-shadow: 0 4px 24px rgba(212, 167, 153, 0.4); }
+        .gallery-item:nth-child(5n+3) { box-shadow: 0 4px 24px rgba(201, 169, 110, 0.3); }
+        .gallery-item:nth-child(5n+4) { box-shadow: 0 4px 24px rgba(220, 180, 165, 0.4); }
+        .gallery-item:nth-child(5n+5) { box-shadow: 0 4px 24px rgba(196, 144, 124, 0.35); }
+
+        .gallery-item:hover {
+            box-shadow: 0 8px 36px rgba(196, 144, 124, 0.5);
         }
 
         .gallery-item img {
@@ -598,6 +605,10 @@
 
         .gallery-item:hover img { transform: scale(1.06); }
         .gallery-item:hover::after { opacity: 1; }
+
+        .gallery-rows:hover .gallery-row {
+            animation-play-state: paused;
+        }
 
         /* Lightbox */
         .lightbox {
@@ -833,12 +844,8 @@
             }
 
             .gallery-item {
-                flex: 0 0 300px;
-                height: 340px;
-            }
-
-            .gallery-item.featured {
-                flex: 0 0 480px;
+                flex: 0 0 260px;
+                height: 190px;
             }
         }
 
@@ -853,12 +860,8 @@
             .menu-category { padding: 28px; }
 
             .gallery-item {
-                flex: 0 0 75vw;
-                height: 300px;
-            }
-
-            .gallery-item.featured {
-                flex: 0 0 85vw;
+                flex: 0 0 220px;
+                height: 160px;
             }
 
             .order-form-wrap { padding: 28px 20px; }
@@ -1041,51 +1044,48 @@
                 <h2 class="section-title">The Gallery</h2>
                 <div class="section-divider"></div>
             </div>
-            <div class="gallery-grid reveal">
-                <div class="gallery-item featured" onclick="openLightbox(0)">
-                    <img src="images/gallery-01.jpg" alt="Red velvet cupcakes with cream cheese frosting" loading="lazy">
+            <div class="gallery-rows reveal">
+                <!-- Row 1: scrolls left -->
+                <div class="gallery-row">
+                    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-01.jpg" alt="Red velvet cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-02.jpg" alt="Cinnamon rolls" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-03.jpg" alt="Everything bagel" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-04.jpg" alt="Mini cheesecakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-05.jpg" alt="Pumpkin bars" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-01.jpg" alt="Red velvet cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-02.jpg" alt="Cinnamon rolls" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-03.jpg" alt="Everything bagel" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-04.jpg" alt="Mini cheesecakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-05.jpg" alt="Pumpkin bars" loading="lazy"></div>
                 </div>
-                <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="images/gallery-02.jpg" alt="Fresh cinnamon rolls ready to bake" loading="lazy">
+                <!-- Row 2: scrolls right -->
+                <div class="gallery-row">
+                    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-06.jpg" alt="Cookie sandwiches" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Peanut butter pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-08.jpg" alt="Chocolate pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-09.jpg" alt="Swirl cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Coffee cake" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-06.jpg" alt="Cookie sandwiches" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Peanut butter pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-08.jpg" alt="Chocolate pie" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-09.jpg" alt="Swirl cupcakes" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Coffee cake" loading="lazy"></div>
                 </div>
-                <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="images/gallery-03.jpg" alt="Everything bagel fresh from the oven" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(3)">
-                    <img src="images/gallery-04.jpg" alt="Strawberry swirl mini cheesecakes" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(4)">
-                    <img src="images/gallery-05.jpg" alt="Pumpkin bars with cream cheese frosting" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(5)">
-                    <img src="images/gallery-06.jpg" alt="Cookie sandwiches with cream filling" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(6)">
-                    <img src="images/gallery-07.jpg" alt="Peanut butter chocolate pie" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(7)">
-                    <img src="images/gallery-08.jpg" alt="Chocolate peanut butter pie with A2Z Bakerie logo" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(8)">
-                    <img src="images/gallery-09.jpg" alt="Pastel pink purple and blue swirl cupcakes" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(9)">
-                    <img src="images/gallery-10.jpg" alt="Homemade coffee cake with crumb topping" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(10)">
-                    <img src="images/gallery-11.jpg" alt="Mini cheesecake assortment in branded box" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(11)">
-                    <img src="images/gallery-12.jpg" alt="White chocolate cake pops with rainbow sprinkles" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(12)">
-                    <img src="images/gallery-13.jpg" alt="Chocolate cake pops with colorful sprinkles" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(13)">
-                    <img src="images/gallery-14.jpg" alt="Artisan sourdough bread in dutch oven" loading="lazy">
-                </div>
-                <div class="gallery-item" onclick="openLightbox(14)">
-                    <img src="images/gallery-15.jpg" alt="Fresh blueberry bagels on baking sheet" loading="lazy">
+                <!-- Row 3: scrolls left -->
+                <div class="gallery-row">
+                    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Mini cheesecake box" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-13.jpg" alt="Chocolate cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-14.jpg" alt="Sourdough bread" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-15.jpg" alt="Blueberry bagels" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Mini cheesecake box" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-13.jpg" alt="Chocolate cake pops" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-14.jpg" alt="Sourdough bread" loading="lazy"></div>
+                    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-15.jpg" alt="Blueberry bagels" loading="lazy"></div>
                 </div>
             </div>
         </div>
