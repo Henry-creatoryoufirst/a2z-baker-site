@@ -272,8 +272,9 @@
         }
 
         .hero-bg {
-            position: absolute;
+            position: fixed;
             inset: 0;
+            height: 70vh;
             background: url('images/hero.jpg') center center / cover no-repeat;
             z-index: 0;
         }
@@ -284,9 +285,9 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(61, 43, 31, 0.35) 0%,
-                rgba(61, 43, 31, 0.5) 50%,
-                rgba(61, 43, 31, 0.65) 100%
+                rgba(61, 43, 31, 0.45) 0%,
+                rgba(61, 43, 31, 0.6) 50%,
+                rgba(61, 43, 31, 0.72) 100%
             );
         }
 
@@ -303,7 +304,7 @@
             font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 700;
             margin-bottom: 8px;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 16px rgba(0,0,0,0.35), 0 1px 4px rgba(0,0,0,0.2);
             letter-spacing: -0.01em;
         }
 
@@ -351,6 +352,9 @@
         /* ============ SECTIONS ============ */
         .section {
             padding: 100px 0;
+            position: relative;
+            z-index: 2;
+            background: var(--cream);
         }
 
         .section-header {
@@ -440,7 +444,7 @@
         }
 
         /* ============ MENU ============ */
-        .menu-section { background: var(--white); }
+        .menu-section { background: var(--white); position: relative; z-index: 2; }
 
         .menu-categories {
             display: grid;
@@ -633,7 +637,7 @@
         .lightbox-next { right: 24px; }
 
         /* ============ ORDER ============ */
-        .order-section { background: var(--white); }
+        .order-section { background: var(--white); position: relative; z-index: 2; }
 
         .order-form-wrap {
             max-width: 640px;
@@ -704,6 +708,8 @@
             background: var(--brown);
             color: rgba(255, 255, 255, 0.75);
             padding: 60px 0 32px;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-content {
