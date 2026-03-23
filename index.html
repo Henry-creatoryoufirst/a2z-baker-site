@@ -135,6 +135,28 @@
 
         .nav-logo:hover img { transform: scale(1.05); }
 
+        .nav-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--rose);
+            letter-spacing: 0.03em;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+        }
+
+        .nav-tagline.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         .nav-links {
             display: flex;
             align-items: center;
@@ -888,6 +910,9 @@
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 968px) {
+            .nav-tagline {
+                font-size: 0.9rem;
+            }
             .nav-links { display: none; }
             .hamburger { display: flex; }
 
@@ -961,6 +986,7 @@
             <a href="#" class="nav-logo">
                 <img src="images/logo.png" alt="A2Z Bakerie Logo">
             </a>
+            <span class="nav-tagline" id="navTagline">Chemist in the Kitchen</span>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#menu">Menu</a>
@@ -1241,17 +1267,22 @@
 
     <!-- ============ JAVASCRIPT ============ -->
     <script>
-        // === Nav scroll effect + floating CTA ===
+        // === Nav scroll effect + floating CTA + tagline ===
         const nav = document.getElementById('nav');
         const floatingCta = document.getElementById('floatingCta');
         const heroEl = document.getElementById('hero');
         const orderEl = document.getElementById('order');
+        const navTagline = document.getElementById('navTagline');
+        const heroTagline = document.querySelector('.hero-tagline');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 50);
             // Show floating CTA after scrolling past hero, hide near order section
             const pastHero = window.scrollY > heroEl.offsetHeight;
             const nearOrder = orderEl.getBoundingClientRect().top < window.innerHeight * 1.2;
             floatingCta.classList.toggle('visible', pastHero && !nearOrder);
+            // Show tagline in nav when hero tagline scrolls out of view
+            const taglineGone = heroTagline.getBoundingClientRect().bottom < 72;
+            navTagline.classList.toggle('visible', taglineGone);
         });
 
         // === Mobile menu ===
