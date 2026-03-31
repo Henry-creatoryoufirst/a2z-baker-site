@@ -7,7 +7,8 @@ This guide covers everything needed to get the new Next.js site live on Vercel.
 ## What's Already Done
 
 - Next.js app built with homepage, admin dashboard, subscriptions, and merch store
-- Supabase tables created (admin_users, orders, subscription_clubs, subscription_signups, merch_orders)
+- Supabase tables created and connected (admin_users, orders, subscription_clubs, subscription_signups, merch_orders)
+- Printful API token created and connected (expires Mar 30, 2028)
 - Admin user created for Ann (achristinez90@gmail.com / A2zbakerie26!)
 - Vercel project linked
 - Git repo connected
