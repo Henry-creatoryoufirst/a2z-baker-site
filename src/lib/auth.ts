@@ -10,8 +10,8 @@ export interface AdminPayload {
   email: string
 }
 
-export function signToken(payload: AdminPayload): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' })
+export function signToken(payload: AdminPayload, rememberMe = false): string {
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: rememberMe ? '30d' : '24h' })
 }
 
 export function verifyToken(token: string): AdminPayload | null {
@@ -37,13 +37,13 @@ export async function getAdminFromCookie(): Promise<AdminPayload | null> {
   return verifyToken(token)
 }
 
-export function getTokenCookieOptions() {
+export function getTokenCookieOptions(rememberMe = false) {
   return {
     name: COOKIE_NAME,
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax' as const,
     path: '/',
-    maxAge: 60 * 60 * 24, // 24 hours
+    maxAge: rememberMe ? 60 * 60 * 24 * 30 : 60 * 60 * 24, // 30 days or 24 hours
   }
 }

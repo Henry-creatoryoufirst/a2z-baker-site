@@ -4,7 +4,7 @@ import { comparePassword, signToken, getTokenCookieOptions } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password } = await request.json()
+    const { email, password, rememberMe } = await request.json()
 
     if (!email || !password) {
       return NextResponse.json({ error: 'Email and password required' }, { status: 400 })
@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 
-    const token = signToken({ userId: user.id, email: user.email })
-    const cookieOptions = getTokenCookieOptions()
+    const token = signToken({ userId: user.id, email: user.email }, !!rememberMe)
+    const cookieOptions = getTokenCookieOptions(!!rememberMe)
 
     const response = NextResponse.json({ success: true })
     response.cookies.set(cookieOptions.name, token, cookieOptions)
