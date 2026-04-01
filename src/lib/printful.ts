@@ -4,13 +4,20 @@ function getApiKey(): string | null {
   return process.env.PRINTFUL_API_KEY || null
 }
 
+function getStoreId(): string | null {
+  return process.env.PRINTFUL_STORE_ID || null
+}
+
 function headers(): HeadersInit {
   const key = getApiKey()
   if (!key) throw new Error('PRINTFUL_API_KEY is not set')
-  return {
+  const h: Record<string, string> = {
     'Authorization': `Bearer ${key}`,
     'Content-Type': 'application/json',
   }
+  const storeId = getStoreId()
+  if (storeId) h['X-PF-Store-Id'] = storeId
+  return h
 }
 
 async function printfulFetch<T>(path: string): Promise<T> {
