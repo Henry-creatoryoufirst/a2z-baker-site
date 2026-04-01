@@ -58,6 +58,7 @@ export default function Nav() {
             <a href="#menu" onClick={(e) => handleNavClick(e, '#menu')}>Menu</a>
             <a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a>
             <a href="#reviews" onClick={(e) => handleNavClick(e, '#reviews')}>Reviews</a>
+            <a href="#shop" onClick={(e) => handleNavClick(e, '#shop')}>Shop</a>
             <a href="#order" className="nav-order-btn" onClick={(e) => handleNavClick(e, '#order')}>Order</a>
           </div>
           <div
@@ -78,6 +79,7 @@ export default function Nav() {
         <a href="#menu" className="mobile-link" onClick={(e) => handleNavClick(e, '#menu')}>Menu</a>
         <a href="#gallery" className="mobile-link" onClick={(e) => handleNavClick(e, '#gallery')}>Gallery</a>
         <a href="#reviews" className="mobile-link" onClick={(e) => handleNavClick(e, '#reviews')}>Reviews</a>
+        <a href="#shop" className="mobile-link" onClick={(e) => handleNavClick(e, '#shop')}>Shop</a>
         <a href="#order" className="mobile-link mobile-order-btn" onClick={(e) => handleNavClick(e, '#order')}>Order</a>
       </div>
     </>

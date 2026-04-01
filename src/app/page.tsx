@@ -5,6 +5,7 @@ import About from '@/components/homepage/About';
 import Menu from '@/components/homepage/Menu';
 import OrderForm from '@/components/homepage/OrderForm';
 import Reviews from '@/components/homepage/Reviews';
+import Shop from '@/components/homepage/Shop';
 import FloatingCTA from '@/components/homepage/FloatingCTA';
 import Footer from '@/components/homepage/Footer';
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Menu />
       <OrderForm />
       <Reviews />
+      <Shop />
       <FloatingCTA />
       <Footer />
     </>
