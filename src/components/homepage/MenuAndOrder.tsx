@@ -164,7 +164,7 @@ export default function MenuAndOrder() {
           padding: 100px 0;
           position: relative;
           z-index: 2;
-          background: var(--white, #fff);
+          background: linear-gradient(180deg, var(--white, #fff) 0%, #fdf6f0 100%);
         }
 
         .mo-container {
@@ -222,7 +222,7 @@ export default function MenuAndOrder() {
           background: var(--cream, #FBF7F2);
           border-radius: 20px;
           padding: 28px;
-          border: 1px solid rgba(61, 43, 31, 0.06);
+          border: 1px solid rgba(196, 144, 124, 0.12);
           box-shadow: 0 4px 24px rgba(61, 43, 31, 0.04);
         }
 
@@ -253,9 +253,10 @@ export default function MenuAndOrder() {
           color: var(--brown, #3D2B1F);
         }
         .mo-tab.active {
-          background: var(--brown, #3D2B1F);
+          background: linear-gradient(135deg, var(--rose, #C4907C), #b37d6a);
           color: white;
-          border-color: var(--brown, #3D2B1F);
+          border-color: var(--rose, #C4907C);
+          box-shadow: 0 4px 12px rgba(196, 144, 124, 0.3);
         }
         .mo-tab-icon { font-size: 0.9rem; }
 
@@ -298,16 +299,19 @@ export default function MenuAndOrder() {
         }
         .mo-item-dots {
           flex: 1;
-          border-bottom: 1.5px dotted rgba(61, 43, 31, 0.15);
+          border-bottom: 1.5px dotted rgba(196, 144, 124, 0.3);
           margin-bottom: 4px;
           min-width: 20px;
         }
         .mo-item-price {
           font-family: 'Outfit', sans-serif;
-          font-weight: 500;
+          font-weight: 600;
           color: var(--rose, #C4907C);
           font-size: 0.9rem;
           white-space: nowrap;
+          background: rgba(196, 144, 124, 0.08);
+          padding: 2px 10px;
+          border-radius: 20px;
         }
         .mo-item-desc {
           font-size: 0.85rem;
@@ -338,11 +342,12 @@ export default function MenuAndOrder() {
           top: 88px;
         }
         .mo-order-card {
-          background: var(--cream, #FBF7F2);
+          background: linear-gradient(160deg, #3D2B1F 0%, #2a1d14 100%);
           border-radius: 20px;
           padding: 32px;
-          border: 1px solid rgba(61, 43, 31, 0.06);
-          box-shadow: 0 4px 24px rgba(61, 43, 31, 0.04);
+          border: none;
+          box-shadow: 0 8px 32px rgba(61, 43, 31, 0.15);
+          color: white;
         }
         .mo-order-header {
           margin-bottom: 24px;
@@ -351,13 +356,13 @@ export default function MenuAndOrder() {
           font-family: 'Cormorant Garamond', serif;
           font-size: 1.6rem;
           font-weight: 600;
-          color: var(--brown, #3D2B1F);
+          color: white;
           margin-bottom: 6px;
           line-height: 1.2;
         }
         .mo-order-header p {
           font-size: 0.88rem;
-          color: var(--brown-light, #5a4638);
+          color: rgba(255, 255, 255, 0.6);
           line-height: 1.5;
         }
 
@@ -377,39 +382,40 @@ export default function MenuAndOrder() {
           font-weight: 500;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: var(--brown, #3D2B1F);
+          color: rgba(255, 255, 255, 0.5);
           margin-bottom: 6px;
         }
-        .req { color: var(--rose, #C4907C); }
+        .req { color: var(--gold, #C9A96E); }
         .mo-field input,
         .mo-field textarea {
           width: 100%;
           padding: 12px 14px;
-          border: 1.5px solid rgba(61, 43, 31, 0.08);
+          border: 1.5px solid rgba(255, 255, 255, 0.1);
           border-radius: 10px;
           font-family: 'Outfit', sans-serif;
           font-size: 0.9rem;
-          background: white;
-          color: var(--brown, #3D2B1F);
+          background: rgba(255, 255, 255, 0.08);
+          color: white;
           transition: border-color 0.25s, box-shadow 0.25s;
         }
         .mo-field input::placeholder,
         .mo-field textarea::placeholder {
-          color: rgba(61, 43, 31, 0.25);
+          color: rgba(255, 255, 255, 0.3);
         }
         .mo-field input:focus,
         .mo-field textarea:focus {
           outline: none;
           border-color: var(--rose, #C4907C);
-          box-shadow: 0 0 0 3px rgba(196, 144, 124, 0.12);
+          box-shadow: 0 0 0 3px rgba(196, 144, 124, 0.2);
+          background: rgba(255, 255, 255, 0.12);
         }
         .mo-field textarea { resize: vertical; }
 
         .mo-submit-btn {
           width: 100%;
           padding: 14px;
-          background: linear-gradient(135deg, var(--rose, #C4907C) 0%, #b37d6a 100%);
-          color: white;
+          background: linear-gradient(135deg, var(--gold, #C9A96E) 0%, #b89a5a 100%);
+          color: var(--brown, #3D2B1F);
           border: none;
           border-radius: 12px;
           font-family: 'Outfit', sans-serif;
@@ -431,7 +437,7 @@ export default function MenuAndOrder() {
         .mo-form-note {
           text-align: center;
           font-size: 0.78rem;
-          color: rgba(61, 43, 31, 0.4);
+          color: rgba(255, 255, 255, 0.35);
           margin-top: 12px;
           line-height: 1.5;
         }
